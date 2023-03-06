@@ -3,6 +3,21 @@
     "NftMarketplace": {
       "address": "0x61bD8747Fa57F4E8A73D0a5B91827a43e50Fc9Cf",
       "startBlock": 8571944
+    },
+    "Basic_Nft": {
+      "address": "0x16965d59dd4e320E87Cb8F580C9Ec5A422991640"
+    },
+    "MarketAuction": {
+      "address": "0x8587878deBD5c1EF5BADbE26E6f6759DAC30DDd9"
+    },
+    "Collections": {
+      "address": "0x7Fa7B998A325537Fe0Cd3579864EB49CaC7c2085"
+    },
+    "Users": {
+      "address": "0x3E7875F39A6d27C24Ca99ad35EA5ae4ABC4bdfeC"
+    },
+    "Reviews": {
+      "address": "0x88B257D0ac67AdE7059c638B6CC34ff94Dc2E64c"
     }
   }
 }

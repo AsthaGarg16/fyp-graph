@@ -31,13 +31,15 @@ dataSources:
           handler: handleItemCanceled
         - event: ItemListed(indexed address,indexed address,uint256,address,uint256,uint256,uint256)
           handler: handleItemListed
-        - event: ItemSold(indexed address,indexed address,indexed address,uint256,uint256,address,uint256)
+        - event: ItemSold(indexed address,indexed address,indexed
+            address,uint256,uint256,address,uint256)
           handler: handleItemSold
         - event: ItemUpdated(indexed address,indexed address,uint256,address,uint256)
           handler: handleItemUpdated
         - event: OfferCanceled(indexed address,indexed address,uint256)
           handler: handleOfferCanceled
-        - event: OfferCreated(indexed address,indexed address,uint256,uint256,address,uint256,uint256)
+        - event: OfferCreated(indexed address,indexed
+            address,uint256,uint256,address,uint256,uint256)
           handler: handleOfferCreated
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
@@ -46,3 +48,194 @@ dataSources:
         - event: UpdatePlatformFeeRecipient(address)
           handler: handleUpdatePlatformFeeRecipient
       file: ./src/nft-marketplace.ts
+  - kind: ethereum
+    name: Basic_Nft
+    network: goerli
+    source:
+      address: "0x16965d59dd4e320E87Cb8F580C9Ec5A422991640"
+      abi: Basic_Nft
+      startBlock: 8576073
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - NftMinted
+        - Transfer
+      abis:
+        - name: Basic_Nft
+          file: ./abis/Basic_Nft.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: NftMinted(indexed uint256,string,string)
+          handler: handleNftMinted
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/basic-nft.ts
+  - kind: ethereum
+    name: MarketAuction
+    network: goerli
+    source:
+      address: "0x8587878deBD5c1EF5BADbE26E6f6759DAC30DDd9"
+      abi: MarketAuction
+      startBlock: 8519636
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AuctionCancelled
+        - AuctionCreated
+        - AuctionResulted
+        - BidPlaced
+        - BidRefunded
+        - BidWithdrawn
+        - FantomAuctionContractDeployed
+        - Initialized
+        - MarketAuctionOwnershipTransferred
+        - PauseToggled
+        - UpdateAuctionEndTime
+        - UpdateAuctionReservePrice
+        - UpdateAuctionStartTime
+        - UpdateBidWithdrawalLockTime
+        - UpdateMinBidIncrement
+        - MarketAuctionUpdatePlatformFee
+        - MarketAuctionUpdatePlatformFeeRecipient
+      abis:
+        - name: MarketAuction
+          file: ./abis/MarketAuction.json
+      eventHandlers:
+        - event: AuctionCancelled(indexed address,indexed uint256)
+          handler: handleAuctionCancelled
+        - event: AuctionCreated(indexed address,indexed uint256,address)
+          handler: handleAuctionCreated
+        - event: AuctionResulted(address,indexed address,indexed uint256,indexed
+            address,address,int256,uint256)
+          handler: handleAuctionResulted
+        - event: BidPlaced(indexed address,indexed uint256,indexed address,uint256)
+          handler: handleBidPlaced
+        - event: BidRefunded(indexed address,indexed uint256,indexed address,uint256)
+          handler: handleBidRefunded
+        - event: BidWithdrawn(indexed address,indexed uint256,indexed address,uint256)
+          handler: handleBidWithdrawn
+        - event: FantomAuctionContractDeployed()
+          handler: handleFantomAuctionContractDeployed
+        - event: Initialized(uint8)
+          handler: handleInitialized
+        - event: MarketAuctionOwnershipTransferred(indexed address,indexed address)
+          handler: handleMarketAuctionOwnershipTransferred
+        - event: PauseToggled(bool)
+          handler: handlePauseToggled
+        - event: UpdateAuctionEndTime(indexed address,indexed uint256,uint256)
+          handler: handleUpdateAuctionEndTime
+        - event: UpdateAuctionReservePrice(indexed address,indexed uint256,address,uint256)
+          handler: handleUpdateAuctionReservePrice
+        - event: UpdateAuctionStartTime(indexed address,indexed uint256,uint256)
+          handler: handleUpdateAuctionStartTime
+        - event: UpdateBidWithdrawalLockTime(uint256)
+          handler: handleUpdateBidWithdrawalLockTime
+        - event: UpdateMinBidIncrement(uint256)
+          handler: handleUpdateMinBidIncrement
+        - event: MarketAuctionUpdatePlatformFee(uint256)
+          handler: handleMarketAuctionUpdatePlatformFee
+        - event: MarketAuctionUpdatePlatformFeeRecipient(address)
+          handler: handleMarketAuctionUpdatePlatformFeeRecipient
+      file: ./src/market-auction.ts
+  - kind: ethereum
+    name: Collections
+    network: goerli
+    source:
+      address: "0x7Fa7B998A325537Fe0Cd3579864EB49CaC7c2085"
+      abi: Collections
+      startBlock: 8571950
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddedToCollection
+        - AddedToWatchlist
+        - CollectionCreated
+        - CollectionsOwnershipTransferred
+        - RemovedFromWatchlist
+      abis:
+        - name: Collections
+          file: ./abis/Collections.json
+      eventHandlers:
+        - event: AddedToCollection(indexed string,address,uint256)
+          handler: handleAddedToCollection
+        - event: AddedToWatchlist(indexed string,indexed address)
+          handler: handleAddedToWatchlist
+        - event: CollectionCreated(indexed string,string,string,uint16,string,string,address)
+          handler: handleCollectionCreated
+        - event: CollectionsOwnershipTransferred(indexed address,indexed address)
+          handler: handleCollectionsOwnershipTransferred
+        - event: RemovedFromWatchlist(indexed string,indexed address)
+          handler: handleRemovedFromWatchlist
+      file: ./src/collections.ts
+  - kind: ethereum
+    name: Users
+    network: goerli
+    source:
+      address: "0x3E7875F39A6d27C24Ca99ad35EA5ae4ABC4bdfeC"
+      abi: Users
+      startBlock: 8572088
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - DonateDetails
+        - FollowerAdded
+        - FollowerRemoved
+        - ProfileUpdated
+        - WalletConnected
+      abis:
+        - name: Users
+          file: ./abis/Users.json
+      eventHandlers:
+        - event: DonateDetails(indexed address,uint256,address)
+          handler: handleDonateDetails
+        - event: FollowerAdded(indexed address,indexed address)
+          handler: handleFollowerAdded
+        - event: FollowerRemoved(indexed address,indexed address)
+          handler: handleFollowerRemoved
+        - event: ProfileUpdated(indexed address,string)
+          handler: handleProfileUpdated
+        - event: WalletConnected(indexed address,string)
+          handler: handleWalletConnected
+      file: ./src/users.ts
+  - kind: ethereum
+    name: Reviews
+    network: goerli
+    source:
+      address: "0x88B257D0ac67AdE7059c638B6CC34ff94Dc2E64c"
+      abi: Reviews
+      startBlock: 8571957
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddLiked
+        - RemoveLiked
+        - ReviewAdded
+        - ReviewDeleted
+      abis:
+        - name: Reviews
+          file: ./abis/Reviews.json
+      eventHandlers:
+        - event: AddLiked(indexed address,indexed uint256,address)
+          handler: handleAddLiked
+        - event: RemoveLiked(indexed address,indexed uint256,address)
+          handler: handleRemoveLiked
+        - event: ReviewAdded(indexed address,indexed uint256,address,string)
+          handler: handleReviewAdded
+        - event: ReviewDeleted(indexed address,indexed uint256,address)
+          handler: handleReviewDeleted
+      file: ./src/reviews.ts
