@@ -1,0 +1,48 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: NftMarketplace
+    network: goerli
+    source:
+      address: "0x61bD8747Fa57F4E8A73D0a5B91827a43e50Fc9Cf"
+      abi: NftMarketplace
+      startBlock: 8571944
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - ItemCanceled
+        - ItemListed
+        - ItemSold
+        - ItemUpdated
+        - OfferCanceled
+        - OfferCreated
+        - OwnershipTransferred
+        - UpdatePlatformFee
+        - UpdatePlatformFeeRecipient
+      abis:
+        - name: NftMarketplace
+          file: ./abis/NftMarketplace.json
+      eventHandlers:
+        - event: ItemCanceled(indexed address,indexed address,uint256)
+          handler: handleItemCanceled
+        - event: ItemListed(indexed address,indexed address,uint256,address,uint256,uint256,uint256)
+          handler: handleItemListed
+        - event: ItemSold(indexed address,indexed address,indexed address,uint256,uint256,address,uint256)
+          handler: handleItemSold
+        - event: ItemUpdated(indexed address,indexed address,uint256,address,uint256)
+          handler: handleItemUpdated
+        - event: OfferCanceled(indexed address,indexed address,uint256)
+          handler: handleOfferCanceled
+        - event: OfferCreated(indexed address,indexed address,uint256,uint256,address,uint256,uint256)
+          handler: handleOfferCreated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: UpdatePlatformFee(uint16)
+          handler: handleUpdatePlatformFee
+        - event: UpdatePlatformFeeRecipient(address)
+          handler: handleUpdatePlatformFeeRecipient
+      file: ./src/nft-marketplace.ts
